@@ -133,26 +133,26 @@ void bTreeNode::deleteN(int key){
             n--;
         }
         else{
-            bTreeNode *cur;
+            bTreeNode *tmp;
 
             if (node[idx]->n >= t){
-                cur = node[idx];
-                while (!cur->l){
-                    cur = cur->node[cur->n];
+                tmp = node[idx];
+                while (!tmp->l){
+                    tmp = tmp->node[tmp->n];
                 }
-                int pred = cur->keys[cur->n-1];
-                keys[idx] = pred;
-                node[idx]->deleteN(pred);
+                int p = tmp->keys[tmp->n-1];
+                keys[idx] = p;
+                node[idx]->deleteN(p);
             }
 
             else if  (node[idx+1]->n >= t){
-                cur = node[idx+1];
-                while (!cur->l){
-                    cur = cur->node[0];
+                tmp = node[idx+1];
+                while (!tmp->l){
+                    tmp = tmp->node[0];
                 }
-                int succ = cur->keys[0];
-                keys[idx] = succ;
-                node[idx+1]->deleteN(succ);
+                int com = tmp->keys[0];
+                keys[idx] = com;
+                node[idx+1]->deleteN(com);
             }
             else{
                 merge(idx);
